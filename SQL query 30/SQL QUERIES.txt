@@ -1,0 +1,94 @@
+SQL QUERIES
+
+1. Display  all the information of the emp table
+SELECT * FROM EMP;
+
+2. Display unique jobs from emp table?
+SELECT DISTINCT JOB FROM EMP;
+SELECT UNIQUE JOB FROM EMP;
+
+3. List the emps in the asc order of their salaries?
+SELECT * FROM EMP ORDER BY DEPTNO ASC, JOB DESC;
+
+4. List the details of the emps in asc order of the dptnos and desc of jobs?
+SELECT * FROM EMP ORDER BY DEPTNO ASC, JOB DESC;
+
+5. Display all the unique job groups in the descending order?
+SELECT DISTINCT JOB FROM EMP ORDER BY JOB DESC;
+
+6. Display all the details of all 'MGrs'
+SELECT * FROM EMP WHERE EMPNO IN (SELECT MGRS FROM EMP);
+
+7. List the emps who joined before 1981
+SELECT * FROM EMP WHERE hiredate <('01-jan-81');
+
+8. List the empno,ename, sal, daily sal of all emps in the asc order of annusal
+SELECT EMPNO,ENAME,SAL,SAL/30,12*SAL ANNUSAL FROM EMP ORDER BY ANNUSAL ASC;
+
+9. Display the empno,ename,job,hiredate, exp of all mgrs.
+SELECT EMPNO,ENAME,JOB,HIREDATE, months_between (sysdate,hiredate) exp FROM EMP WHERE EMPNO IN (SELECT MGR FROM EMP);
+
+10. List the empno ,ename,sal,exp of all emps working for mgr 7369.
+SELECT EMPNO,ENAME,SAL,EXP OF ALL EMPS WORKING FOR MGR 7369;
+
+11. Display all the details of the emps whose comm IS more than their sal .
+SELECT * FROM EMP WHERE COMM >SAL; 
+
+12. List the emps in the asc order of designation of those joined after the second half of 1981.
+SELECT * FROM EMP WHERE HIREDATE > ('30-jun-81') AND  to_CHAR(hiredate,'YYYY') = 1981 order by job asc;
+
+13. List the emps along with their exp and daily sal is more than 100
+SELECT * FROM EMP WHERE (SAL/30)>100;
+
+14. List the emps who are either'CLERK' OR 'ANALYST' in the desc order
+SELECT * FROM EMP WHERE JOB = 'CLERK' OR JOB = 'ANALYST' ORDER BY JOB DESC;
+
+15. List the emps who are working for deptno 10 or 20
+SELECT * FROM EMP WHERE DEPTNO  = 10 OR DEPTNO = 20;
+
+16. List the emps who annual sal ranging fro 22000 and 45000
+SELECT * FROM EMP WHERE 12*SAL BETWEEN 22000 AND 45000
+
+17. List the emps who are joined in January
+SELECT * FROM EMP WHERE TO_CHAR(hiredate,'mon')= 'jan';
+
+18. List the emps those who joined in 80's
+SELECT * FROM EMP WHERE TO_CHAR(hiredate,'YY') LIKE '8%';
+
+19. List all the clerk of deptno 20
+SELECT * FROM EMP WHERE JOB = 'CLERK' AND DEPTNO = 20;
+
+20. Display the details of SMITH
+SELECT * FROM EMP WHERE ENAME = 'SMITH';
+
+21. Display the location of SMITH
+SELECT LOC FROM EMP e , DEPT  d where e.ENAME = 'SMITH and e.DEPTNO =  d.DEPTNO';
+
+22. Find the highest sal of emp table
+SELECT MAX(SAL) FROM EMP;
+
+23. Find details of highest paid employee
+SELECT * FROM EMP WHERE SAL IN(SELECT MAX(SAL) FROM EMP);
+
+24. List the emps who are not working in sales dept
+SELECT * FROM EMP WHERE DEPTNO NOT IN 
+(SELECT DEPTNO FROM EMP WHERE DNAME = 'SALES');
+
+25. List the emps name job who are with out manager
+SELECT e.ENAME ,e.JOB FROM EMP e WHERE MGR IS null;
+
+26. List the emps whose name contains 'A'
+SELECT * FROM EMP WHERE ename like '%A';
+
+27. List the emps whose deptno is available in his salary
+SELECT * FROM EMP WHERE INSTR(SAL,deptno)>0;
+
+28. List the deptno where there are no emps
+SELECT DEPTNO,COUNT(*) FROM EMP GROUP BY DEPTNO 
+HAVING COUNT(* ) = 0.;
+
+29. Find the maximum average salary drawn for each job except for 'president'
+SELECT MAX(AVG(SAL)) FROM EMP WHERE JOB ! = 'President' Group by job;
+
+30. List the empno , sal, comm of emps;
+SELECT EMPNO , SAL,COMM FROM EMP;
