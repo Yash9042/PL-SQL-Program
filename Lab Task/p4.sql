@@ -1,0 +1,15 @@
+--EXAMPLE OF IMPLICIT CURSOR
+DECLARE
+			
+			vEMPNO NUMBER(4);
+			vENAME  VARCHAR2(10);
+			vSAL        NUMBER(7,2);
+BEGIN
+		SELECT EMPNO,ENAME,SAL INTO vEMPNO,vENAME,vSAL FROM EMP WHERE EMPNO=&EMPNO;
+
+		DBMS_OUTPUT.PUT_LINE('EMPLOYEE NO 			EMPLOYEE NAME		SALARY');
+		DBMS_OUTPUT.PUT_LINE('===================================================');
+		DBMS_OUTPUT.PUT_LINE(vEMPNO	 || '		    |		'  ||vENAME	||' 	  |  	'   ||	vSAL);
+
+END;
+/

@@ -1,0 +1,15 @@
+-- Using for loop in expliceat cursor--
+DECLARE
+		
+		CURSOR cEMP IS SELECT ENAME,JOB FROM EMP;
+
+BEGIN
+	FOR R IN CEMP
+	LOOP
+				DBMS_OUTPUT.PUT_LINE('EMPLOYEE NAME '  ||    R.ENAME);
+				DBMS_OUTPUT.PUT_LINE('EMPLOYEE JOB ' || R.JOB);
+		
+	END LOOP;
+
+	END;
+	/

@@ -1,0 +1,17 @@
+CREATE TABLE student (
+    roll_no NUMBER PRIMARY KEY,
+    name    VARCHAR2(50),
+    class   VARCHAR2(20)
+);
+
+
+
+
+CREATE TABLE fee (
+    roll_no   NUMBER,
+    amount    NUMBER(10,2),
+    fee_date  DATE,
+    CONSTRAINT fk_roll
+        FOREIGN KEY (roll_no)
+        REFERENCES student(roll_no)
+);
